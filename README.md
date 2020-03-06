@@ -6,19 +6,21 @@ This is a simple web scrapper written in Python 3.8 and using Beautiful Soup 4 t
 What's Here
 -----------
 
-This sample includes:
-
 * README.md - this file
 * meteoscrappey.py - this is the main program
+* .gitignore
 
 Getting Started
 ---------------
-0 - Prerequisites : Install aws command line
-1 - Clone this project in you development environment
-2 - Create an S3 bucket
-3 - Add dependencies
-sudo python3 -m pip install bs4 numpy pandas s3fs
-4 - Deloy the function in Lambda 
-5 - Deploy the layer in Lambda
-6 - Add permisson to Lambda to access the S3 bucket
-7 - Configure the trigger to start the function
+0. Prerequisites : Install aws command line
+1. Create an S3 bucket
+2. Clone this project in you development environment
+3. If you want to run it
+  * Add permissions to write to S3 buckey
+  * Add dependencies
+    sudo python3 -m pip install bs4 numpy pandas s3fs
+4. Deploy the function in Lambda 
+  * Add permissions to deploy
+5. Deploy the layer in Lambda
+6. Add permisson to Lambda to access the S3 bucket
+7. Configure the trigger to start the function
