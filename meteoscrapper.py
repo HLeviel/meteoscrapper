@@ -1,3 +1,4 @@
+import os
 import json
 import sys
 from bs4 import BeautifulSoup
@@ -6,7 +7,7 @@ import numpy as np
 import pandas as pd
 import datetime
 
-target_s3_bucket = 's3://meteoscrapper/'
+target_s3_bucket = os.environ.get('TARGET_S3_BUCKET')
 
 website_url="https://meteo.pf/fr/observations-stations-iles"
 
@@ -25,9 +26,13 @@ def scrapper():
     
     # Build date
     splitted_title = title.split(" ")
+    day = int(splitted_title[3])
     month_to_number = {"janvier":1, "février" : 2, "mars" : 3, "avril" : 4, "mai" : 5, "juin" : 6, "juillet" : 7, 
     "août" : 8,	"septembre" : 9, "octobre" : 10, "novembre" : 11, "décembre" : 12}
-    date = datetime.datetime(int(splitted_title[5]), month_to_number[splitted_title[4]], int(splitted_title[3]), int(splitted_title[7]))
+    month = month_to_number[splitted_title[4]]
+    year = int(splitted_title[5])
+    hour =  int(splitted_title[7])
+    date = datetime.datetime(year, month, day, hour)
     
     # Get stations
     stations = observations.find_all("div", {"class":"station"})
@@ -55,10 +60,11 @@ def scrapper():
     except ValueError:
         print("Erreur de conversion" )
         print(page)
+        return "Error"
         
     # Save data
     df.to_csv(''.join([target_s3_bucket, title, '.csv']), index=False)
-    return { 'statusCode': 200,'body': json.dumps(title)}
+    return "OK"
 
 def lambda_handler(event, context):
     return scrapper()

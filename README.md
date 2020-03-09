@@ -10,17 +10,15 @@ What's Here
 * meteoscrappey.py - this is the main program
 * .gitignore
 
-Getting Started
+Deploy with cloud9
 ---------------
-0. Prerequisites : Install aws command line
+1. : Create a cloud9 environment 
 1. Create an S3 bucket
 2. Clone this project in you development environment
-3. If you want to run it
-  * Add permissions to write to S3 buckey
+``` git clone https://github.com/HLeviel/meteoscrapper.git```
+3. Run in local
   * Add dependencies
-    sudo python3 -m pip install bs4 numpy pandas s3fs
+    ```venv/bin/pip install bs4 numpy pandas s3fs requests```
 4. Deploy the function in Lambda 
-  * Add permissions to deploy
-5. Deploy the layer in Lambda
 6. Add permisson to Lambda to access the S3 bucket
 7. Configure the trigger to start the function
