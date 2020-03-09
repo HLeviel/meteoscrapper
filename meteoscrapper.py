@@ -1,15 +1,12 @@
-import os
-import json
-import sys
-from bs4 import BeautifulSoup
 import requests
+from bs4 import BeautifulSoup
 import numpy as np
 import pandas as pd
 import datetime
 
-target_s3_bucket = os.environ.get('TARGET_S3_BUCKET')
+target_s3_bucket = "s3://meteoscrapper/"
 
-website_url="https://meteo.pf/fr/observations-stations-iles"
+website_url = "https://meteo.pf/fr/observations-stations-iles"
 
 
 def scrapper():
