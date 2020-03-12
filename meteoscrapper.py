@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import datetime
 
-target_s3_bucket = "s3://metscrapper/"
+target_s3_bucket = "s3://meteoscrapper/"
 
 website_url = "https://meteo.pf/fr/observations-stations-iles"
 
@@ -29,7 +29,7 @@ def scrapper():
     month = month_to_number[splitted_title[4]]
     year = int(splitted_title[5])
     hour =  int(splitted_title[7])
-    date = datetime.datetime(year, month, day, hour)
+    date = datetime.datetime(year, month, day, hour).strftime("%Y-%m-%d %H:%M:%S")
     
     # Get stations
     stations = observations.find_all("div", {"class":"station"})
