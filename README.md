@@ -1,7 +1,7 @@
 Welcome to the meteoscrapper project
 ==============================================
 
-This is a simple web scrapper written in Python 3.8 and using Beautiful Soup 4 to scrap the observations of meteo.pf, transform them as à panda datafrrame and save it as json object in S3
+This is a simple web scrapper written in Python 3.6 and using Beautiful Soup 4 to scrap the observations of meteo.pf, transform them as à panda datafrrame and save it as json object in S3
 
 What's Here
 -----------
@@ -14,7 +14,7 @@ What's Here
 Deploy with cloud9
 ---------------
 1. Create an S3 bucket
-2. In a cloud9 environment, create a new lambda application (for example Application = meteo and Lamda = scrapper)
+2. In a cloud9 environment, create a new lambda application (for example Application = meteo and Lamda = scrapper), with an "Empty Python 3.6" template
 3. Get the code 
   * Right click on the application folder and Open a terminal window
   * Add dependencies
