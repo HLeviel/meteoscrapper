@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import datetime
 
-target_s3_bucket = "s3://meteoscrapper/"
+target_s3_bucket = "s3://metscrapper/"
 
 website_url = "https://meteo.pf/fr/observations-stations-iles"
 
@@ -35,11 +35,14 @@ def scrapper():
     stations = observations.find_all("div", {"class":"station"})
     data=[]
     for station in stations:
-        station_data = dict(station = station.find("h3", {"class":"decorate"}).text, date = date)
-        
+        station_name = station.find("h3", {"class":"decorate"}).text
+        station_data = dict(station = station_name, date = date)
+        measures = station.find_all( "li")
         # Iterate over measures
-        for measure in station.find_all( "li"):
-            station_data[measure.find("div", {"class":"station-title"}).text] = measure.find("div", {"class":"station-text-left"}).text
+        for measure in measures:
+            measure_name = measure.find("div", {"class":"station-title"}).text
+            measure_value = measure.find("div", {"class":"station-text-left"}).text
+            station_data[measure_name] = measure_value
         data.append(station_data)
     
     # Clean data
