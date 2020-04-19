@@ -54,7 +54,7 @@ def scrapper():
         df["Pression"] = df["Pression"].str.split(' ', 1).str.get(0).astype(int)
         df["Température"] = df["Température"].str.split(' ', 1).str.get(0).astype(int)
         df["Humidité"] = df["Humidité"].str.split(' ', 1).str.get(0).astype(int)
-        df["Force du vent"] = np.where(df["Force du vent"]== '//', -1, df["Force du vent"].str.split(' ', 1).str.get(0).astype(int))
+        df["Force du vent"].replace('//', '-1 km/h').replace('// km/h', '-1 km/h').str.split(' ', 1).str.get(0).astype(int)
         df["Etat du ciel"] = df["Etat du ciel"].map(sky_to_number)
         df["Direction du vent"] = df["Direction du vent"].map(angle_to_number)
     except ValueError:
